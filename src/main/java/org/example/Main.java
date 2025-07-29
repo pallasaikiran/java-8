@@ -2,11 +2,15 @@ package org.example;
 
 import org.example.model.Employee;
 import org.example.model.Product;
+import org.example.model.Staff;
 import org.example.model.User;
 import org.example.testDataForModelClaases.EmployeeTestData;
 import org.example.testDataForModelClaases.ProductTestData;
+import org.example.testDataForModelClaases.StaffTestData;
 import org.example.testDataForModelClaases.UserTestData;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
@@ -24,5 +28,10 @@ public class Main {
         // filter employees older than 30 and in Engineering department
         Stream<Employee> filteredEmployees = EmployeeTestData.getEmployeeStream().filter(e -> e.getAge() > 30 && e.getDepartment().equals("Engineering"));
         filteredEmployees.forEach(System.out::println);
+
+        // get all the names from list of staff 
+        List<String> listOfStaffNames = StaffTestData.getListOfStaff().stream().map(Staff::getName).collect(Collectors.toList());
+
+        System.out.println(listOfStaffNames);
     }
 }
