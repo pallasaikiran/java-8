@@ -1,21 +1,22 @@
 package org.example;
 
+import org.example.model.Product;
 import org.example.model.User;
+import org.example.testDataForModelClaases.ProductTestData;
+import org.example.testDataForModelClaases.UserTestData;
 
 import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
-
-        Stream<User> usersStream = Stream.of(new User("Alice", true),
-                new User("Bob", false),
-                new User("Carline", true),
-                new User("David", false)
-        );
+        
 
         // filter active users
-        Stream<User> activeUsers = usersStream.filter(User::isActive);
+        Stream<User> activeUsers = UserTestData.getUsersStream().filter(User::isActive);
         activeUsers.forEach(System.out::println);
 
+        // filter products priced over 1000 and available in stock
+        Stream<Product> filteredProducts = ProductTestData.getProductssStream().filter(p -> p.getPrice() > 1000 && p.isInStock());
+        filteredProducts.forEach(System.out::println);
     }
 }
